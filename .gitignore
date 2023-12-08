@@ -1,0 +1,11 @@
+!wp-content/
+/*.php
+/vendor
+/wp-admin
+/wp-includes
+
+!.gitignore
+
+.htaccess
+license.txt
+readme.html
