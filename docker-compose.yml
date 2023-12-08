@@ -22,11 +22,18 @@ services:
       WORDPRESS_DB_USER: MyWordPressUser
       WORDPRESS_DB_PASSWORD: Pa$$5w0rD
       WORDPRESS_DB_NAME: MyWordPressDatabaseName
+    healthcheck:
+      test: ["CMD", "curl", "localhost:80"]
+      interval: 3s
+      timeout: 5s
+      retries: 30
     volumes:
       - ./:/var/www/html
   tests:
     build: .
+    # Wait until the first run has generated all the WP files
     depends_on:
-      - wordpress
+      wordpress:
+        condition: service_healthy
     volumes:
       - ./:/var/www/html

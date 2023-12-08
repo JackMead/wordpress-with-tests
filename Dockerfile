@@ -5,4 +5,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN composer require phpunit/phpunit --dev
 
-ENTRYPOINT ./vendor/bin/phpunit tests
+ENTRYPOINT composer install && ./vendor/bin/phpunit tests
